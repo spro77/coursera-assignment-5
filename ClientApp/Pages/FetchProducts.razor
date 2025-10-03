@@ -55,7 +55,7 @@ else
             using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(RequestTimeoutSeconds));
             
             // Make API call with timeout
-            var response = await Http.GetAsync("api/products", cts.Token);
+            var response = await Http.GetAsync("api/productlist", cts.Token);
 
             // Check if response is successful
             if (response.IsSuccessStatusCode)

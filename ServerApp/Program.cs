@@ -1,23 +1,17 @@
 var builder = WebApplication.CreateBuilder(args);
 
 // Add CORS services
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowBlazorClient",
-        policy =>
-        {
-            policy.WithOrigins("http://localhost:5202", "https://localhost:7257")
-                  .AllowAnyHeader()
-                  .AllowAnyMethod();
-        });
-});
+builder.Services.AddCors();
 
 var app = builder.Build();
 
 // Enable CORS
-app.UseCors("AllowBlazorClient");
+app.UseCors(policy =>
+    policy.AllowAnyOrigin()
+          .AllowAnyMethod()
+          .AllowAnyHeader());
 
-app.MapGet("/api/products", () =>
+app.MapGet("/api/productlist", () =>
 {
     return new[]
     {
