@@ -22,6 +22,11 @@ else if (products != null && products.Length > 0)
             <li>
                 <strong>@product.Name</strong> - $@product.Price.ToString("F2")
                 <span class="text-muted">(Stock: @product.Stock)</span>
+                @if (product.Category != null)
+                {
+                    <br />
+                    <small class="text-info">Category: @product.Category.Name</small>
+                }
             </li>
         }
     </ul>
@@ -103,5 +108,12 @@ else
         public string Name { get; set; } = string.Empty;
         public double Price { get; set; }
         public int Stock { get; set; }
+        public Category? Category { get; set; }
+    }
+
+    public class Category
+    {
+        public int Id { get; set; }
+        public string Name { get; set; } = string.Empty;
     }
 }
